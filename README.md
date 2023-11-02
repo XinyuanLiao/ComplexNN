@@ -13,6 +13,11 @@
 
 Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network parameters respectively, directly utilizing complex numbers as network parameters will halve the number of trainable parameters, which results in faster training speed.
 
+# Install
+```
+pip install complexNN
+```
+
 # Module
 The complex form modules include
 <div align="center">
