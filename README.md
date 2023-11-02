@@ -17,7 +17,7 @@ Since subsequent versions of PyTorch support matrix operations and gradient desc
 The complex form modules include
 <div align="center">
   
-| **complexLinear** | **complexRNNcell** | **complexActivation** | **complexFunction** |
+| **[complexLinear](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexLinear.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexFunction.py)** |
 |:-----------------:|:------------------:|:---------------------:|:-------------------:|
 | Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
 |                   | GRU Cell           | Gelu                  | LayerNorm1d         |
