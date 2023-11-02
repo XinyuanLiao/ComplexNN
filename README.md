@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/logo.jpg" width="300px"/>
+  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/logo.jpg" width="200px"/>
 </p>
 <div align="center">
 <h1>ComplexNN: Complex Neural Network Modules</h1>
