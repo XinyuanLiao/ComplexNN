@@ -22,7 +22,7 @@ pip install complexNN
 The complex form modules include
 <div align="center">
   
-| **[complexLinear](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexLinear.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/Module/complexFunction.py)** |
+| **[complexLinear](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLinear.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** |
 |:-----------------:|:------------------:|:---------------------:|:-------------------:|
 | Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
 |                   | GRU Cell           | Gelu                  | LayerNorm1d         |
