@@ -3,16 +3,16 @@
 ![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
 ![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/ComplexNN/total)
 # ComplexNN
-Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules.
+Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network parameters respectively, directly utilizing complex numbers as network parameters will halve the number of trainable parameters. This results in faster training speed.
 
 # Module
 The complex form modules include
 * complexLinear
     - Linear
 * complexRNNcell
-    - RNNCell
-    - GRUCell
-    - LSTMCell
+    - RNN Cell
+    - GRU Cell
+    - LSTM Cell
 * complexActivation
     - Relu
     - Gelu
@@ -21,6 +21,8 @@ The complex form modules include
 * complexFunction
     - BatchNorm1d
     - LayerNorm1d
+ 
+Other modules will be considered for updates in the future.
 
 # Examples
 ## Multilayer perceptron
@@ -70,4 +72,14 @@ class complexRNN(nn.Module):
         for i in range(self.laryer_num):
             h_prev = self.rnn_layers[i](x, h_prev)
         return h_prev
+```
+
+# Cite as
+```
+@misc{ComplexNN,
+      title={Complex Neural Network Modules},
+      author={Xinyuan Liao},
+      Url= {https://github.com/XinyuanLiao/ComplexNN}, 
+      year={2023}
+}
 ```
