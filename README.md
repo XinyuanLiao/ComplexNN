@@ -1,3 +1,7 @@
+![](https://img.shields.io/hexpm/l/plug)
+![Static Badge](https://img.shields.io/badge/Language-Python_|_PyTorch-green)
+![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
+![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/ComplexNN/total)
 # ComplexNN
 Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules.
 
