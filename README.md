@@ -7,6 +7,7 @@
 ![Static Badge](https://img.shields.io/hexpm/l/plug)
 ![Static Badge](https://img.shields.io/badge/Language-Python_|_PyTorch-green)
 ![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
+![Static Badge](https://img.shields.io/badge/Version-0.0.1-pink)
 ![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/ComplexNN/total)
     
 </div>
