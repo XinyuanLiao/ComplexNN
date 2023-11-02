@@ -1,26 +1,27 @@
-![](https://img.shields.io/hexpm/l/plug)
+<p align="center">
+  <img src="https://github.com/XinyuanLiao/ComplexNN/logo.jpg" width="300px"/>
+</p>
+<div align="center">
+<h1>ComplexNN: Complex Neural Network Modules</h1>
+
+![Static Badge](https://img.shields.io/hexpm/l/plug)
 ![Static Badge](https://img.shields.io/badge/Language-Python_|_PyTorch-green)
 ![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
 ![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/ComplexNN/total)
-# ComplexNN
-Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network parameters respectively, directly utilizing complex numbers as network parameters will halve the number of trainable parameters. This results in faster training speed.
+    
+</div>
+
+Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network parameters respectively, directly utilizing complex numbers as network parameters will halve the number of trainable parameters, which results in faster training speed.
 
 # Module
 The complex form modules include
-* complexLinear
-    - Linear
-* complexRNNcell
-    - RNN Cell
-    - GRU Cell
-    - LSTM Cell
-* complexActivation
-    - Relu
-    - Gelu
-    - Tanh
-    - Sigmoid
-* complexFunction
-    - BatchNorm1d
-    - LayerNorm1d
+| **complexLinear** | **complexRNNcell** | **complexActivation** | **complexFunction** |
+|:-----------------:|:------------------:|:---------------------:|:-------------------:|
+| Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
+|                   | GRU Cell           | Gelu                  | LayerNorm1d         |
+|                   | LSTM Cell          | Tanh                  |                     |
+|                   |                    | Sigmoid               |                     |
+
  
 Other modules will be considered for updates in the future.
 
