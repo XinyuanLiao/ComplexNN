@@ -81,7 +81,7 @@ class complexRNN(nn.Module):
 # Cite as
 ```
 @misc{ComplexNN,
-      title={Complex Neural Network Modules},
+      title={ComplexNN: Complex Neural Network Modules},
       author={Xinyuan Liao},
       Url= {https://github.com/XinyuanLiao/ComplexNN}, 
       year={2023}
