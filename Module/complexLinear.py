@@ -6,7 +6,7 @@ import torch.nn as nn
 class complexLinear(nn.Module):
     def __init__(self, in_features, out_features, bias=True):
         super(complexLinear, self).__init__()
-        self.weight = nn.Parameter(torch.zeros(in_features, out_features, dtype=torch.cfloat))
+        self.weight = nn.Parameter(torch.zeros(out_features, in_features, dtype=torch.cfloat))
         self.bias = nn.Parameter(torch.zeros(1, out_features, dtype=torch.cfloat), requires_grad=bias)
 
         torch.nn.init.kaiming_uniform_(self.weight, a=math.sqrt(5))
