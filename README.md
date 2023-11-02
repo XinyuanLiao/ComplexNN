@@ -65,7 +65,7 @@ class complexMLP(nn.Module):
 ## Recurrent neural network
 ```python
 import torch.nn as nn
-from complexNN.compledRNNcell import complexRNNCell
+from complexNN.complexRNNcell import complexRNNCell
 
 
 class complexRNN(nn.Module):
