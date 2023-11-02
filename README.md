@@ -6,14 +6,14 @@
 Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules.
 
 # Module
-The main complex form modules included are
+The complex form modules include
 * complexLinear
 * complexRNNcell
 * complexActivation
 
 # Examples
 ## Multilayer perceptron
-```
+```python
 import torch.nn as nn
 from complexActivation import complexTanh
 from complexLinear import complexLinear
@@ -40,7 +40,7 @@ class complexMLP(nn.Module):
 ```
 
 ## Recurrent neural network
-```
+```python
 from compledRNNcell import complexRNNCell
 
 
