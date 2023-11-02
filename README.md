@@ -38,8 +38,8 @@ Other modules will be considered for updates in the future.
 ## Multilayer perceptron
 ```python
 import torch.nn as nn
-from complexActivation import complexTanh
-from complexLinear import complexLinear
+from complexNN.complexActivation import complexTanh
+from complexNN.complexLinear import complexLinear
 
 
 class complexMLP(nn.Module):
@@ -65,7 +65,7 @@ class complexMLP(nn.Module):
 ## Recurrent neural network
 ```python
 import torch.nn as nn
-from compledRNNcell import complexRNNCell
+from complexNN.compledRNNcell import complexRNNCell
 
 
 class complexRNN(nn.Module):
