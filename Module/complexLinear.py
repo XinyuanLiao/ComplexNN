@@ -8,10 +8,9 @@ class complexLinear(nn.Module):
         self.weight = nn.Parameter(torch.zeros(out_features, in_features, dtype=torch.cfloat))
         self.bias = nn.Parameter(torch.zeros(1, out_features, dtype=torch.cfloat), requires_grad=bias)
 
-        torch.nn.init.kaiming_uniform_(self.weight, a=math.sqrt(5))
+        nn.init.xavier_uniform_(self.weight)
         if bias:
-            bound = 1 / math.sqrt(in_features)
-            torch.nn.init.uniform_(self.bias, -bound, bound)
+            nn.init.xavier_uniform_(self.bias)
 
     def forward(self, input):
         if not input.dtype == torch.cfloat:
