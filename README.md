@@ -8,8 +8,19 @@ Since subsequent versions of PyTorch support matrix operations and gradient desc
 # Module
 The complex form modules include
 * complexLinear
+    - Linear
 * complexRNNcell
+    - RNNCell
+    - GRUCell
+    - LSTMCell
 * complexActivation
+    - Relu
+    - Gelu
+    - Tanh
+    - Sigmoid
+* complexFunction
+    - BatchNorm1d
+    - LayerNorm1d
 
 # Examples
 ## Multilayer perceptron
