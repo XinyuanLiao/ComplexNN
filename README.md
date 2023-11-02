@@ -15,6 +15,8 @@ Since subsequent versions of PyTorch support matrix operations and gradient desc
 
 # Module
 The complex form modules include
+<div align="center">
+  
 | **complexLinear** | **complexRNNcell** | **complexActivation** | **complexFunction** |
 |:-----------------:|:------------------:|:---------------------:|:-------------------:|
 | Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
@@ -22,6 +24,7 @@ The complex form modules include
 |                   | LSTM Cell          | Tanh                  |                     |
 |                   |                    | Sigmoid               |                     |
 
+</div>
  
 Other modules will be considered for updates in the future.
 
