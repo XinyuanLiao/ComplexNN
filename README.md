@@ -67,11 +67,14 @@ class complexMLP(nn.Module):
         self.input_layer = complexLinear(input_size, hidden_size)
         self.hidden_layers = nn.ModuleList([complexLinear(hidden_size, hidden_size) for _ in range(num_layers - 1)])
         self.output_layer = complexLinear(hidden_size, output_size)
+        self.dropout = nn.Dropout(0.5)
 
     def forward(self, x):
         x = complexTanh(self.input_layer(x))
+        x = self.dropout(x)
         for i in range(self.layer_num - 1):
             x = complexTanh(self.hidden_layers[i](x))
+            x = self.dropout(x)
         output = self.output_layer(x)
         return output
 ```
