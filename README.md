@@ -31,15 +31,17 @@ pip install --upgrade complexNN
 
 ```v0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
 
+```v0.1.2``` Bug fixed. Adds support for BatchNorm2d, and BatchNorm3d.
+
 # Modules
 The complex form modules include
 <div align="center">
   
-| **[complexLinear](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLinear.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** |
+| **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** |
 |:-----------------:|:------------------:|:---------------------:|:-------------------:|
-| Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
-|                   | GRU Cell           | Gelu                  | LayerNorm1d         |
-|                   | LSTM Cell          | Tanh                  |                     |
+| Linear            | RNN Cell           | Relu                  | BatchNorm           |
+|                   | GRU Cell           | Gelu                  | LayerNorm           |
+|                   | LSTM Cell          | Tanh                  | Dropout             |
 |                   | LRU Cell [1]       | Sigmoid               |                     |
 
 </div>
