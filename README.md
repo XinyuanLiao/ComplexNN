@@ -20,9 +20,9 @@ pip install complexNN
 ```
 
 # Versions
-```v 0.0.1``` Provides the plural form of the base standard PyTorch network module.
+```v0.0.1``` Provides the plural form of the base standard PyTorch network module.
 
-```v 0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
+```v0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
 
 # Modules
 The complex form modules include
