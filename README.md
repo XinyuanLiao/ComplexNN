@@ -44,7 +44,7 @@ The complex form modules include
 
 </div>
  
-Note that the native version of ```torch.nn.Dropout``` is supported.:exclamation::exclamation: Other modules will be considered for updates in the future.
+Note that the native version of ```torch.nn.Dropout``` is supported:exclamation::exclamation: Other modules will be considered for updates in the future.
 
 # Examples
 ## Multilayer perceptron
