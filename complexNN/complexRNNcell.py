@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from complexActivation import complexSigmoid, complexTanh
-from complexLinear import complexLinear
+from complexLayer import complexLinear
 
 
 class complexRNNCell(nn.Module):
