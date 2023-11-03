@@ -15,8 +15,13 @@
 Since the latest versions of PyTorch support matrix operations and gradient descent on plural parameters, this repository provides the latest plural form of some standard PyTorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network plural parameters respectively, directly utilizing complex numbers as network parameters will _**halve the number of trainable parameters**_, which speeds up the training process.
 
 # Install
+To install _complexNN_ for the first time:
 ```
 pip install complexNN
+```
+To upgrade a previous installation of _complexNN_ to the most recent version:
+```
+pip install --upgrade complexNN
 ```
 
 # Versions
