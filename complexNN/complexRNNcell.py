@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 import torch.nn as nn
 from complexActivation import complexSigmoid, complexTanh
@@ -13,6 +14,35 @@ class complexRNNCell(nn.Module):
     def forward(self, x, h_prev):
         h = complexTanh(self.Wx(x) + self.Wh(h_prev))
         return h
+
+
+class LRUCell(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size, bias=False,
+                 sigma_min=0.9, sigma_max=0.999, phase=np.pi * 2):
+        super(LRUCell, self).__init__()
+        u1 = np.random.random(size=int(hidden_size))
+        u2 = np.random.random(size=int(hidden_size))
+
+        # Prior information
+        v = -0.5 * np.log(u1 * (sigma_max ** 2 - sigma_min ** 2) + sigma_min ** 2)
+        theta = u2 * phase
+
+        # Unconstrained optimization
+        self.v_log = nn.Parameter(torch.tensor(np.log(v), dtype=torch.float32))
+        self.theta_log = nn.Parameter(torch.tensor(np.log(theta), dtype=torch.float32))
+
+        # Input matrix
+        self.B = complexLinear(input_size, hidden_size, bias=bias)
+        # Output matrix
+        self.C = complexLinear(hidden_size, output_size, bias=bias)
+
+    def effective_W(self):
+        w = torch.exp(-torch.exp(self.v_log) + 1j * torch.exp(self.theta_log))
+        return torch.diag(w)  # State matrix
+
+    def forward(self, x, h_prev):
+        h = self.B(x) + torch.matmul(h_prev, self.effective_W())
+        return torch.real(self.C(h))
 
 
 class complexGRUCell(nn.Module):
