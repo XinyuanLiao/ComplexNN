@@ -7,19 +7,24 @@
 ![Static Badge](https://img.shields.io/hexpm/l/plug)
 ![Static Badge](https://img.shields.io/badge/Language-Python_|_PyTorch-green)
 ![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
-![Static Badge](https://img.shields.io/badge/Version-0.0.1-pink)
-![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/ComplexNN/total)
+[![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
+<!--[![Downloads](https://static.pepy.tech/personalized-badge/complexNN?period=month&units=international_system&left_color=grey&right_color=brightgreen&left_text=PyPI%20downloads/month)](https://pepy.tech/project/reliability)-->
     
 </div>
 
-Since subsequent versions of PyTorch support matrix operations and gradient descent on complex parameters, this repository provides the latest complex form of some standard Pytorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network parameters respectively, directly utilizing complex numbers as network parameters will halve the number of trainable parameters, which results in faster training speed.
+Since subsequent versions of PyTorch support matrix operations and gradient descent on plural parameters, this repository provides the latest plural form of some standard PyTorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network plural parameters respectively, directly utilizing complex numbers as network parameters will **halve the number of trainable parameters**, which speeds up the training process.
 
 # Install
 ```
 pip install complexNN
 ```
 
-# Module
+# Versions
+```v 0.0.1``` Provides the plural form of the base standard PyTorch network module.
+
+```v 0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
+
+# Modules
 The complex form modules include
 <div align="center">
   
@@ -28,7 +33,7 @@ The complex form modules include
 | Linear            | RNN Cell           | Relu                  | BatchNorm1d         |
 |                   | GRU Cell           | Gelu                  | LayerNorm1d         |
 |                   | LSTM Cell          | Tanh                  |                     |
-|                   |                    | Sigmoid               |                     |
+|                   | LRU Cell [1]       | Sigmoid               |                     |
 
 </div>
  
@@ -93,3 +98,6 @@ class complexRNN(nn.Module):
       year={2023}
 }
 ```
+
+# Reference
+[1] Orvieto, Antonio, et al. "Resurrecting recurrent neural networks for long sequences." arXiv preprint arXiv:2303.06349 (2023).
