@@ -33,72 +33,58 @@ pip install --upgrade complexNN
 
 ```v0.1.2``` Bug fixed. Adds support for BatchNorm2d, and BatchNorm3d.
 
+```v0.2.1``` Bug fixed. Adds support for MLP, RNN, GRU, and LSTM.
+
 # Modules
 The complex form modules include
 <div align="center">
   
-| **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** |
-|:-----------------:|:------------------:|:---------------------:|:-------------------:|
-| Linear            | RNN Cell           | Relu                  | BatchNorm           |
-|                   | GRU Cell           | Gelu                  | LayerNorm           |
-|                   | LSTM Cell          | Tanh                  | Dropout             |
-|                   | LRU Cell [1]       | Sigmoid               |                     |
+| **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** | **[complexRNN](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNN.py)**|
+|:-----------------:|:------------------:|:---------------------:|:-------------------:|:-------------------:|
+| Linear            | RNN Cell           | Relu                  | BatchNorm           |RNN|
+|  MLP                 | GRU Cell           | Gelu                  | LayerNorm           |GRU|
+|                   | LSTM Cell          | Tanh                  |                     |LSTM|
+|                   | LRU Cell [1]       | Sigmoid               |                     ||
 
 </div>
  
-Note that the native version of ```torch.nn.Dropout``` is supported:exclamation::exclamation: Other modules will be considered for updates in the future.
+Other modules will be considered for updates in the future.
 
 # Examples
 ## Multilayer perceptron
 ```python
-import torch.nn as nn
-from complexNN.complexActivation import complexTanh
-from complexNN.complexLinear import complexLinear
+import torch
+form complexLayer import complexMLP
 
 
-class complexMLP(nn.Module):
-    """
-    Complex Multilayer Perceptron
-    """
-
-    def __init__(self, input_size, hidden_size, output_size, num_layers):
-        super(complexMLP, self).__init__()
-        self.num_layers = num_layers
-        self.input_layer = complexLinear(input_size, hidden_size)
-        self.hidden_layers = nn.ModuleList([complexLinear(hidden_size, hidden_size) for _ in range(num_layers - 1)])
-        self.output_layer = complexLinear(hidden_size, output_size)
-        self.dropout = nn.Dropout(0.5)
-
-    def forward(self, x):
-        x = complexTanh(self.input_layer(x))
-        x = self.dropout(x)
-        for i in range(self.layer_num - 1):
-            x = complexTanh(self.hidden_layers[i](x))
-            x = self.dropout(x)
-        output = self.output_layer(x)
-        return output
+if __name__ == '__main__':
+    batch_size, input_size, hidden_size, output_size = 10, 10, 20, 15
+    input_tensor = torch.rand((batch_size, input_size), dtype=torch.cfloat)
+    mlp = complexMLP(input_size, hidden_size, output_size, num_layers=3)
+    out = mlp(input_tensor)
+    print(out.shape)
 ```
 
-## Recurrent neural network
+## Recurrent neural networks
 ```python
-import torch.nn as nn
-from complexNN.complexRNNcell import complexRNNCell
+import torch
+from complexRNN import complexRNN, complexGRU, complexLSTM
 
 
-class complexRNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers):
-        super(complexRNN, self).__init__()
-        self.num_layers = num_layers
-        self.rnn_layers = nn.ModuleList()
-        for _ in range(num_layers):
-            self.rnn_layers.append(complexRNNCell(input_size, hidden_size))
-            input_size = hidden_size
+if __name__ == '__main__':
+    batch_size, input_size, hidden_size, seq_len, num_layers = 10, 10, 20, 15, 3
+    input_tensor = torch.rand((seq_len, batch_size, input_size), dtype=torch.cfloat)
+    h0, c0 = torch.zeros((num_layers, batch_size, hidden_size)), torch.zeros((num_layers, batch_size, hidden_size))
 
-    def forward(self, x, h_0):
-        h_prev = h_0
-        for i in range(self.laryer_num):
-            h_prev = self.rnn_layers[i](x, h_prev)
-        return h_prev
+    rnn = complexRNN(input_size, hidden_size, num_layers)
+    gru = complexGRU(input_size, hidden_size, num_layers)
+    lstm = complexLSTM(input_size, hidden_size, num_layers)
+
+    rnn_out, _ = rnn(input_tensor, h0)
+    gru_out, _ = gru(input_tensor, h0)
+    lstm_out, _ = lstm(input_tensor, (h0, c0))
+
+    print(rnn_out.shape, gru_out.shape, lstm_out.shape)
 ```
 
 # Cite as
