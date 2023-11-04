@@ -6,10 +6,10 @@ from complexLayer import complexLinear
 
 
 class complexRNNCell(nn.Module):
-    def __init__(self, input_size, hidden_size):
+    def __init__(self, input_size, hidden_size, bias=True):
         super(complexRNNCell, self).__init__()
-        self.Wx = complexLinear(input_size, hidden_size)
-        self.Wh = complexLinear(hidden_size, hidden_size)
+        self.Wx = complexLinear(input_size, hidden_size, bias)
+        self.Wh = complexLinear(hidden_size, hidden_size, bias)
 
     def forward(self, x, h_prev):
         h = complexTanh(self.Wx(x) + self.Wh(h_prev))
@@ -41,69 +41,61 @@ class LRUCell(nn.Module):
         return torch.diag(w)  # State matrix
 
     def forward(self, x, h_prev):
+        if not h_prev.dtype == torch.cfloat:
+            h_prev = torch.complex(h_prev, torch.zeros_like(h_prev))
         h = self.B(x) + torch.matmul(h_prev, self.effective_W())
         return torch.real(self.C(h))
 
 
 class complexGRUCell(nn.Module):
-    def __init__(self, input_size, hidden_size):
+    def __init__(self, input_size, hidden_size, bias=True):
         super(complexGRUCell, self).__init__()
-        self.W_r = complexLinear(input_size + hidden_size, hidden_size)
-        self.U_r = complexLinear(hidden_size, hidden_size, bias=False)
-
-        self.W_z = complexLinear(input_size + hidden_size, hidden_size)
-        self.U_z = complexLinear(hidden_size, hidden_size, bias=False)
-
-        self.W_h = complexLinear(input_size + hidden_size, hidden_size)
-        self.U_h = complexLinear(hidden_size, hidden_size, bias=False)
+        self.W_r = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
+        self.W_z = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
+        self.W_h = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
 
     def forward(self, x, h_prev):
-        r = complexSigmoid(self.W_r(torch.cat((x, h_prev), 1)) + self.U_r(h_prev))
-        z = complexSigmoid(self.W_z(torch.cat((x, h_prev), 1)) + self.U_z(h_prev))
-        h_hat = complexTanh(self.W_h(torch.cat((x, r * h_prev), 1) + self.U_h(h_prev)))
-        h_new = (1 - z) * h_prev + z * h_hat
+        r = complexSigmoid(self.W_r(torch.cat((x, h_prev), 1)))
+        z = complexSigmoid(self.W_z(torch.cat((x, h_prev), 1)))
+        h_hat = complexTanh(self.W_h(torch.cat((x, r * h_prev), 1)))
+        h_new = (1 - z) * h_hat + z * h_prev
         return h_new
 
 
 class complexLSTMCell(nn.Module):
-    def __init__(self, input_size, hidden_size):
+    def __init__(self, input_size, hidden_size, bias=True):
         super(complexLSTMCell, self).__init__()
-        self.input_size = input_size
-        self.hidden_size = hidden_size
-
-        self.W_i = nn.Parameter(torch.zeros(input_size, hidden_size, dtype=torch.cfloat))
-        self.W_f = nn.Parameter(torch.zeros(input_size, hidden_size, dtype=torch.cfloat))
-        self.W_c = nn.Parameter(torch.zeros(input_size, hidden_size, dtype=torch.cfloat))
-        self.W_o = nn.Parameter(torch.zeros(input_size, hidden_size, dtype=torch.cfloat))
-
-        self.U_i = nn.Parameter(torch.zeros(hidden_size, hidden_size, dtype=torch.cfloat))
-        self.U_f = nn.Parameter(torch.zeros(hidden_size, hidden_size, dtype=torch.cfloat))
-        self.U_c = nn.Parameter(torch.zeros(hidden_size, hidden_size, dtype=torch.cfloat))
-        self.U_o = nn.Parameter(torch.zeros(hidden_size, hidden_size, dtype=torch.cfloat))
-
-        self.bias_i = nn.Parameter(torch.zeros(hidden_size, dtype=torch.cfloat))
-        self.bias_f = nn.Parameter(torch.zeros(hidden_size, dtype=torch.cfloat))
-        self.bias_c = nn.Parameter(torch.zeros(hidden_size, dtype=torch.cfloat))
-        self.bias_o = nn.Parameter(torch.zeros(hidden_size, dtype=torch.cfloat))
-
-        nn.init.xavier_uniform_(self.W_i)
-        nn.init.xavier_uniform_(self.W_f)
-        nn.init.xavier_uniform_(self.W_c)
-        nn.init.xavier_uniform_(self.W_o)
-
-        nn.init.orthogonal_(self.U_i)
-        nn.init.orthogonal_(self.U_f)
-        nn.init.orthogonal_(self.U_c)
-        nn.init.orthogonal_(self.U_o)
+        self.W_i = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
+        self.W_f = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
+        self.W_c = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
+        self.W_o = complexLinear(input_size + hidden_size, hidden_size, bias=bias)
 
     def forward(self, x, hidden):
         h, c = hidden
-        i = complexSigmoid(x @ self.W_i + h @ self.U_i + self.bias_i)
-        f = complexSigmoid(x @ self.W_f + h @ self.U_f + self.bias_f)
-        g = complexTanh(x @ self.W_c + h @ self.U_c + self.bias_c)
-        o = complexSigmoid(x @ self.W_o + h @ self.U_o + self.bias_o)
+        i = complexSigmoid(self.W_i(torch.cat((x, h), 1)))
+        f = complexSigmoid(self.W_f(torch.cat((x, h), 1)))
+        g = complexTanh(self.W_c(torch.cat((x, h), 1)))
+        o = complexSigmoid(self.W_o(torch.cat((x, h), 1)))
 
         c = f * c + i * g
         h = o * complexTanh(c)
 
         return h, c
+
+
+if __name__ == '__main__':
+    batch_size, input_size, hidden_size = 10, 10, 20
+    input_tensor = torch.rand((batch_size, input_size))
+    init_state = torch.zeros((batch_size, hidden_size))
+
+    rnn = complexRNNCell(input_size, hidden_size)
+    gru = complexGRUCell(input_size, hidden_size)
+    lstm = complexLSTMCell(input_size, hidden_size)
+    lru = LRUCell(input_size, hidden_size, input_size)
+
+    rnn_out = rnn(input_tensor, init_state)
+    gru_out = gru(input_tensor, init_state)
+    lstm_out, _ = lstm(input_tensor, (init_state, init_state))
+    lru_out = lru(input_tensor, init_state)
+
+    print(rnn_out.shape, gru_out.shape, lstm_out.shape, _.shape, lru_out.shape)

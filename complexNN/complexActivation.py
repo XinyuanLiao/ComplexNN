@@ -1,5 +1,6 @@
 import torch
-from torch.nn.functional import relu, gelu, tanh, sigmoid
+from torch import relu, tanh, sigmoid
+from torch.nn.functional import gelu
 
 
 def complexRelu(input):
