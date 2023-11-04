@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="complexNN",
-    version="0.1.1",
+    version="0.2.1",
     description="A toolbox for using complex valued standard network modules in PyTorch.",
     long_description=open("README.md").read().strip(),
     long_description_content_type="text/markdown",
