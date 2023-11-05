@@ -11,10 +11,16 @@
 [![Scc Count Badge](https://sloc.xyz/github/XinyuanLiao/ComplexNN/)](https://github.com/XinyuanLiao/ComplexNN/)
 [![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
 [![Downloads](https://static.pepy.tech/personalized-badge/complexNN?&units=international_system&left_color=grey&right_color=brightgreen&left_text=PyPI%20downloads)](https://pepy.tech/project/complexNN)
+
+This repository provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to Pytorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
     
 </div>
-
-Since the latest versions of PyTorch support matrix operations and gradient descent on plural parameters, this repository provides the latest plural form of some standard PyTorch network modules. Compared with utilizing two sets of parameters to represent the real and imaginary parts of the network plural parameters respectively, directly utilizing complex numbers as network parameters will _**halve the number of trainable parameters**_, which speeds up the training process.
+<p align="center">
+  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/autograd.png" width="700px"/>
+</p>
+<p align="center">
+  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/derivatives.png" width="700px"/>
+</p>
 
 # Install
 To install _complexNN_ for the first time:
@@ -38,7 +44,7 @@ pip install --upgrade complexNN
 ```v0.3.1``` Code structure optimization, bug fixes, and new support.
 
 # Modules
-The complex form modules include
+The plural form modules include
 <div align="center">
   
 | **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** | **[complexRNN](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNN.py)**|
