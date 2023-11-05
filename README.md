@@ -31,9 +31,11 @@ pip install --upgrade complexNN
 
 ```v0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
 
-```v0.1.2``` Bug fixed. Adds support for BatchNorm2d, and BatchNorm3d.
+```v0.1.2``` Bug fixes, and new support.
 
-```v0.2.1``` Bug fixed. Adds support for MLP, RNN, GRU, and LSTM.
+```v0.2.1``` Bug fixes, and new support.
+
+```v0.3.1``` Code structure optimization, bug fixes, and new support.
 
 # Modules
 The complex form modules include
@@ -41,10 +43,10 @@ The complex form modules include
   
 | **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** | **[complexRNN](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNN.py)**|
 |:-----------------:|:------------------:|:---------------------:|:-------------------:|:-------------------:|
-| Linear            | RNN Cell           | Relu                  | BatchNorm           |RNN|
-|  MLP                 | GRU Cell           | Gelu                  | LayerNorm           |GRU|
-|                   | LSTM Cell          | Tanh                  |                     |LSTM|
-|                   | LRU Cell [1]       | Sigmoid               |                     ||
+| Linear            | RNN Cell           | Relu                  | BatchNorm 1d/ 2d/ 3d   |RNN|
+|  MLP              | GRU Cell           | Gelu                  | LayerNorm           |GRU|
+|  Conv 1d/ 2d      | LSTM Cell          | Tanh                  | dropout 1d/ 2d        |LSTM|
+|                   | LRU Cell [1]       | Sigmoid               | avg/ max pool         ||
 
 </div>
  
