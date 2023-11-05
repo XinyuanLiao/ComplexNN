@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from complexRNNcell import complexRNNCell, complexGRUCell, complexLSTMCell
+from complexNN.complexRNNcell import complexRNNCell, complexGRUCell, complexLSTMCell
 
 
 class complexRNN(nn.Module):
@@ -108,7 +108,7 @@ class complexLSTM(nn.Module):
 
 if __name__ == '__main__':
     batch_size, input_size, hidden_size, seq_len, num_layers = 10, 10, 20, 15, 3
-    input_tensor = torch.rand((seq_len, batch_size, input_size), dtype=torch.cfloat)
+    input_tensor = torch.rand((seq_len, batch_size, input_size))
     h0, c0 = torch.zeros((num_layers, batch_size, hidden_size)), torch.zeros((num_layers, batch_size, hidden_size))
     rnn = complexRNN(input_size, hidden_size, num_layers)
     gru = complexGRU(input_size, hidden_size, num_layers)

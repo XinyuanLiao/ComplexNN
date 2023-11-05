@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from complexFunction import ComplexBatchNorm1d
-from complexNN.complexActivation import complexGelu
+from complexNN.complexFunction import ComplexBatchNorm1d
+from complexNN.complexActivation import cGelu
 
 
 class complexLinear(nn.Module):
@@ -32,13 +32,63 @@ class complexMLP(nn.Module):
         self.hidden_layers = nn.ModuleList([complexLinear(hidden_size, hidden_size) for _ in range(num_layers - 1)])
         self.output_layer = complexLinear(hidden_size, output_size)
         self.bn = ComplexBatchNorm1d(hidden_size)
+        self.activation = cGelu()
 
     def forward(self, x):
-        x = complexGelu(self.input_layer(x))
+        x = self.activation(self.input_layer(x))
         for i in range(self.num_layers - 1):
-            x = complexGelu(self.bn(self.hidden_layers[i](x)))
+            x = self.activation(self.bn(self.hidden_layers[i](x)))
         output = self.output_layer(x)
         return output
+
+
+class complexConv1d(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=0, bias=False, dilation=1, groups=1):
+        super(complexConv1d, self).__init__()
+        assert in_channels % groups == 0, "In_channels should be an integer multiple of groups."
+        assert out_channels % groups == 0, "Out_channels should be an integer multiple of groups."
+
+        self.stride = stride
+        self.padding = padding
+        self.dilation = dilation
+        self.groups = groups
+
+        self.bias = nn.Parameter(torch.randn((out_channels,), dtype=torch.cfloat)) if bias else None
+        self.weight = nn.Parameter(torch.randn((out_channels, in_channels // groups, kernel_size), dtype=torch.cfloat))
+
+    def forward(self, inp):
+        if not inp.dtype == torch.cfloat:
+            inp = torch.complex(inp, torch.zeros_like(inp))
+        out = torch.nn.functional.conv1d(input=inp, weight=self.weight, bias=self.bias, stride=self.stride,
+                                         padding=self.padding, dilation=self.dilation, groups=self.groups)
+        return out
+
+
+class complexConv2d(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=0, bias=False, dilation=1, groups=1):
+        super(complexConv2d, self).__init__()
+        assert in_channels % groups == 0, "In_channels should be an integer multiple of groups."
+        assert out_channels % groups == 0, "Out_channels should be an integer multiple of groups."
+
+        if isinstance(padding, int):
+            padding = (padding, padding)
+        if isinstance(kernel_size, int):
+            kernel_size = (kernel_size, kernel_size)
+        self.stride = stride
+        self.padding = padding
+        self.dilation = dilation
+        self.groups = groups
+
+        self.weight = nn.Parameter(torch.randn((out_channels, in_channels // groups, *kernel_size), dtype=torch.cfloat))
+
+        self.bias = nn.Parameter(torch.randn((out_channels,), dtype=torch.cfloat)) if bias else None
+
+    def forward(self, inp):
+        if not inp.dtype == torch.cfloat:
+            inp = torch.complex(inp, torch.zeros_like(inp))
+        out = torch.nn.functional.conv2d(input=inp, weight=self.weight, bias=self.bias, stride=self.stride,
+                                         padding=self.padding, dilation=self.dilation, groups=self.groups)
+        return out
 
 
 if __name__ == '__main__':
@@ -47,3 +97,13 @@ if __name__ == '__main__':
     mlp = complexMLP(input_size, hidden_size, output_size, num_layers=3)
     out = mlp(input_tensor)
     print(out.shape)
+
+    in_channels, out_channels, seq_len = 3, 16, 10
+    conv_tensor = torch.rand((batch_size, in_channels, seq_len))
+    con1d = complexConv1d(in_channels, out_channels, padding='same')
+    print(con1d(conv_tensor).shape)
+
+    H, W = 256, 256
+    conv2d_tensor = torch.rand((batch_size, in_channels, H, W))
+    conv2d = complexConv2d(in_channels, out_channels, padding=1)
+    print(conv2d(conv2d_tensor).shape)

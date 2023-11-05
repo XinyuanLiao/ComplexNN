@@ -1,8 +1,8 @@
 import numpy as np
 import torch
 import torch.nn as nn
-from complexActivation import complexSigmoid, complexTanh
-from complexLayer import complexLinear
+from complexNN.complexActivation import complexSigmoid, complexTanh
+from complexNN.complexLayer import complexLinear
 
 
 class complexRNNCell(nn.Module):
