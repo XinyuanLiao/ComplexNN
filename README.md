@@ -58,7 +58,8 @@ The plural form modules include
  
 Other modules will be considered for updates in the future.
 
-# Examples [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/file/d/1O8SzfJANAmcIjjN6b2E5pIkkjutgx5ov/view?usp=sharing)
+# Examples 
+<a target="_blank" href="https://github.com/XinyuanLiao/ComplexNN/blob/main/demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 ## Convolutional neural network
 ```python
 import torch
