@@ -33,15 +33,17 @@ pip install --upgrade complexNN
 ```
 
 # Versions
-```v0.0.1``` Provides the plural form of the base standard PyTorch network module.
+```v0.0.1``` Provided the plural form of the base standard PyTorch network module.
 
-```v0.1.1``` Adds support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
+```v0.1.1``` Added support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
 
-```v0.1.2``` Bug fixes, and new support.
+```v0.1.2``` Bug fixed, and added new support.
 
-```v0.2.1``` Bug fixes, and new support.
+```v0.2.1``` Bug fixed, and added new support.
 
-```v0.3.1``` Code structure optimization, bug fixes, and new support.
+```v0.3.1``` Code structure optimization, bug fixed, and added new support.
+
+```v0.3.2``` Bug fixed.
 
 # Modules
 The plural form modules include
