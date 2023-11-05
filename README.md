@@ -12,14 +12,14 @@
 [![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
 [![Downloads](https://static.pepy.tech/personalized-badge/complexNN?&units=international_system&left_color=grey&right_color=brightgreen&left_text=PyPI%20downloads)](https://pepy.tech/project/complexNN)
 
-This repository provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to Pytorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
+This repository provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to PyTorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
     
 </div>
 <p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/autograd.png" width="700px"/>
+  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/autograd.png" width="1200px"/>
 </p>
 <p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/derivatives.png" width="700px"/>
+  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/derivatives.png" width="1200px"/>
 </p>
 
 # Install
