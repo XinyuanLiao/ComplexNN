@@ -100,8 +100,8 @@ if __name__ == '__main__':
 
     in_channels, out_channels, seq_len = 3, 16, 10
     conv_tensor = torch.rand((batch_size, in_channels, seq_len))
-    con1d = complexConv1d(in_channels, out_channels, padding='same')
-    print(con1d(conv_tensor).shape)
+    conv1d = complexConv1d(in_channels, out_channels, padding='same')
+    print(conv1d(conv_tensor).shape)
 
     H, W = 256, 256
     conv2d_tensor = torch.rand((batch_size, in_channels, H, W))
