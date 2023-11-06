@@ -46,7 +46,7 @@ pip install --upgrade complexNN
 
 ```v0.3.2``` Bug fixed.
 
-```v0.4.1``` Optimized code structure.
+```v0.4.2``` Optimized code structure.
 
 # Modules
 The plural form modules include
