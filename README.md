@@ -42,22 +42,24 @@ pip install --upgrade complexNN
 
 ```v0.2.1``` Bug fixed, and added new support.
 
-```v0.3.1``` Code structure optimization, bug fixed, and added new support.
+```v0.3.1``` Optimized code structure, bug fixed, and added new support.
 
 ```v0.3.2``` Bug fixed.
 
+```v0.4.1``` Optimized code structure.
+
 # Modules
 The plural form modules include
-<div align="center">
   
-| **[complexLayer](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexLayer.py)** | **[complexRNNcell](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNNcell.py)** | **[complexActivation](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexActivation.py)** | **[complexFunction](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexFunction.py)** | **[complexRNN](https://github.com/XinyuanLiao/ComplexNN/blob/main/complexNN/complexRNN.py)**|
-|:-----------------:|:------------------:|:---------------------:|:-------------------:|:-------------------:|
-| Linear            | RNN Cell           | Relu                  | BatchNorm 1d/ 2d/ 3d   |RNN|
-|  MLP              | GRU Cell           | Gelu                  | LayerNorm           |GRU|
-|  Conv 1d/ 2d      | LSTM Cell          | Tanh                  | dropout 1d/ 2d        |LSTM|
-|                   | LRU Cell [1]       | Sigmoid               | avg/ max pool         ||
+complexNN.nn:
+* _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
+* _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
+* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, LRUCell, cGRUCell, cLSTMCell, cRNN, cGRu, cLSTM_
+* _EarlyStopping_
 
-</div>
+complexNN.functional:
+* _Corresponding function implementation in complexNN.nn_
+
  
 Other modules will be considered for updates in the future.
 
@@ -66,30 +68,30 @@ Other modules will be considered for updates in the future.
 ## Convolutional neural network
 ```python
 import torch
-from complexNN.complexLayer import complexConv1d, complexConv2d
+from complexNN.nn import cConv1d, cConv2d
 
 
 if __name__ == '__main__':
     batch_size, in_channels, out_channels, seq_len = 10, 3, 16, 10
     conv_tensor = torch.rand((batch_size, in_channels, seq_len))
-    conv1d = complexConv1d(in_channels, out_channels, padding='same')
+    conv1d = cConv1d(in_channels, out_channels, padding='same')
     print(conv1d(conv_tensor).shape)
 
     H, W = 256, 256
     conv2d_tensor = torch.rand((batch_size, in_channels, H, W))
-    conv2d = complexConv2d(in_channels, out_channels, padding=1)
+    conv2d = cConv2d(in_channels, out_channels, padding=1)
     print(conv2d(conv2d_tensor).shape)
 ```
 ## Multilayer perceptron
 ```python
 import torch
-form complexNN.complexLayer import complexMLP
+from complexNN.nn import cMLP
 
 
 if __name__ == '__main__':
     batch_size, input_size, hidden_size, output_size = 10, 10, 20, 15
     input_tensor = torch.rand((batch_size, input_size), dtype=torch.cfloat)
-    mlp = complexMLP(input_size, hidden_size, output_size, num_layers=3)
+    mlp = cMLP(input_size, hidden_size, output_size, num_layers=3)
     out = mlp(input_tensor)
     print(out.shape)
 ```
@@ -97,7 +99,7 @@ if __name__ == '__main__':
 ## Recurrent neural networks
 ```python
 import torch
-from complexNN.complexRNN import complexRNN, complexGRU, complexLSTM
+from complexNN.nn import cRNN, cGRU, cLSTM
 
 
 if __name__ == '__main__':
@@ -105,9 +107,9 @@ if __name__ == '__main__':
     input_tensor = torch.rand((seq_len, batch_size, input_size), dtype=torch.cfloat)
     h0, c0 = torch.zeros((num_layers, batch_size, hidden_size)), torch.zeros((num_layers, batch_size, hidden_size))
 
-    rnn = complexRNN(input_size, hidden_size, num_layers)
-    gru = complexGRU(input_size, hidden_size, num_layers)
-    lstm = complexLSTM(input_size, hidden_size, num_layers)
+    rnn = cRNN(input_size, hidden_size, num_layers)
+    gru = cGRU(input_size, hidden_size, num_layers)
+    lstm = cLSTM(input_size, hidden_size, num_layers)
 
     rnn_out, _ = rnn(input_tensor, h0)
     gru_out, _ = gru(input_tensor, h0)
