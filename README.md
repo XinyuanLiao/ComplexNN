@@ -12,16 +12,15 @@
 [![Scc Count Badge](https://sloc.xyz/github/XinyuanLiao/ComplexNN/?category=codes)](https://github.com/XinyuanLiao/ComplexNN/)
 [![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
 [![Downloads](https://static.pepy.tech/personalized-badge/complexNN?&units=international_system&left_color=grey&right_color=brightgreen&left_text=PyPI%20downloads)](https://pepy.tech/project/complexNN)
-
-This repository provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to PyTorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
-    
 </div>
-<p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/autograd.png" width="1200px"/>
-</p>
-<p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/derivatives.png" width="1200px"/>
-</p>
+
+# What is ComplexNN?
+
+ComplexNN provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to PyTorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
+
+# Why ComplexNN?
+
+Currently, state-of-the-art complex neural network libraries, such as [deep_complex_networks](https://github.com/ChihebTrabelsi/deep_complex_networks), [complexPytorch](https://github.com/wavefrontshaping/complexPyTorch), etc., implement the complex-valued network module by utilizing two sets of parameters to represent the real and imaginary parts of the complex numbers. This implementation method not only increases the number of parameters but is also not conducive to the backpropagation of gradients and significantly increases the difficulty of training. Therefore, I used PyTorch's support for complex gradient operations to re-implement the complex-valued network module.
 
 # Install
 To install _complexNN_ for the first time:
@@ -49,15 +48,14 @@ pip install --upgrade complexNN
 ```v0.4.2``` Optimized code structure.
 
 # Modules
-The plural form modules include
-  
-complexNN.nn:
+
+## complexNN.nn
 * _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
 * _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
 * _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, LRUCell, cGRUCell, cLSTMCell, cRNN, cGRu, cLSTM_
 * _EarlyStopping_
 
-complexNN.functional:
+## complexNN.functional
 * _Corresponding function implementation in complexNN.nn_
 
  
