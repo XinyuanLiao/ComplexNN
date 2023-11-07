@@ -52,7 +52,7 @@ pip install --upgrade complexNN
 ## complexNN.nn
 * _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
 * _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
-* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, LRUCell, cGRUCell, cLSTMCell, cRNN, cGRu, cLSTM_
+* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, LRUCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM_
 * _EarlyStopping_
 
 ## complexNN.functional
