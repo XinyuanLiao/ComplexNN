@@ -20,7 +20,7 @@ ComplexNN provides the plural form of standard modules under the PyTorch framewo
 
 # Why ComplexNN?
 
-Currently, state-of-the-art complex neural network libraries, such as [deep_complex_networks](https://github.com/ChihebTrabelsi/deep_complex_networks), [complexPytorch](https://github.com/wavefrontshaping/complexPyTorch), etc., implement the complex-valued network module by utilizing two sets of parameters to represent the real and imaginary parts of the complex numbers. This implementation method not only increases the number of parameters but is also not conducive to the backpropagation of gradients and significantly increases the difficulty of training. Therefore, I used PyTorch's support for complex gradient operations to re-implement the complex-valued network module.
+Currently, state-of-the-art complex neural network libraries, such as [deep_complex_networks](https://github.com/ChihebTrabelsi/deep_complex_networks) [1], [complexPytorch](https://github.com/wavefrontshaping/complexPyTorch) [2], etc., implement the complex-valued network module by utilizing two sets of parameters to represent the real and imaginary parts of the complex numbers. This implementation method not only increases the number of parameters but is also not conducive to the backpropagation of gradients and significantly increases the difficulty of training. Therefore, I used PyTorch's support for complex gradient operations to re-implement the complex-valued network module.
 
 # Install
 To install _complexNN_ for the first time:
@@ -35,7 +35,7 @@ pip install --upgrade complexNN
 # Versions
 ```v0.0.1``` Provided the plural form of the base standard PyTorch network module.
 
-```v0.1.1``` Added support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU).
+```v0.1.1``` Added support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU) [3].
 
 ```v0.1.2``` Bug fixed, and added new support.
 
@@ -127,4 +127,8 @@ if __name__ == '__main__':
 ```
 
 # Reference
-[1] _Orvieto, Antonio, et al. "Resurrecting recurrent neural networks for long sequences." arXiv preprint arXiv:2303.06349 (2023)._
+[1] _Chiheb Trabelsi, et al. "Deep Complex Networks." arXiv preprint arXiv:1705.09792 (2017)._
+
+[2] _Matthès, Maxime W., et al. "Learning and avoiding disorder in multimode fibers." Physical Review X 11.2 (2021): 021060._
+
+[3] _Orvieto, Antonio, et al. "Resurrecting recurrent neural networks for long sequences." arXiv preprint arXiv:2303.06349 (2023)._
