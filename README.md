@@ -37,8 +37,6 @@ pip install --upgrade complexNN
 # Versions
 ```v0.0.1``` Provided the plural form of the base standard PyTorch network module.
 
-```v0.1.1``` Added support for the [Linear Recurrent Unit](https://arxiv.org/abs/2303.06349) (LRU) [3].
-
 ```v0.1.2``` Bug fixed, and added new support.
 
 ```v0.2.1``` Bug fixed, and added new support.
@@ -54,7 +52,7 @@ pip install --upgrade complexNN
 ## complexNN.nn
 * _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
 * _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
-* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, LRUCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM_
+* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM_
 * _EarlyStopping_
 
 ## complexNN.functional
@@ -133,4 +131,3 @@ if __name__ == '__main__':
 
 [2] _Matthès, Maxime W., et al. "Learning and avoiding disorder in multimode fibers." Physical Review X 11.2 (2021): 021060._
 
-[3] _Orvieto, Antonio, et al. "Resurrecting recurrent neural networks for long sequences." arXiv preprint arXiv:2303.06349 (2023)._
