@@ -10,6 +10,8 @@
 [![Actions Status](https://github.com/XinyuanLiao/ComplexNN/workflows/CodeQL/badge.svg)](https://github.com/XinyuanLiao/ComplexNN/actions)
 [![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
 [![Downloads](https://static.pepy.tech/personalized-badge/complexNN?&units=international_system&left_color=grey&right_color=brightgreen&left_text=PyPI%20downloads)](https://pepy.tech/project/complexNN)
+![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-green) 
+![Stars](https://img.shields.io/github/stars/XinyuanLiao/ComplexNN)
 </div>
 
 # What is ComplexNN?
