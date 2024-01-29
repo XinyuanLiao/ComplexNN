@@ -5,7 +5,9 @@
 <h1>ComplexNN: Complex Neural Network Modules</h1>
 
 ![Static Badge](https://img.shields.io/hexpm/l/plug)
-![Static Badge](https://img.shields.io/badge/Language-Python_|_PyTorch-green)
+![languages](https://img.shields.io/github/languages/top/XinyuanLiao/ComplexNN)
+![Size](https://img.shields.io/github/languages/code-size/XinyuanLiao/ComplexNN)
+![Static Badge](https://img.shields.io/badge/Framework-PyTorch-green)
 ![Static Badge](https://img.shields.io/badge/Platform-Win_|_Mac-pink)
 [![Actions Status](https://github.com/XinyuanLiao/ComplexNN/workflows/CodeQL/badge.svg)](https://github.com/XinyuanLiao/ComplexNN/actions)
 [![PyPI version](https://img.shields.io/pypi/v/complexNN?color=brightgreen&logo=Python&logoColor=white&label=PyPI%20package)](https://pypi.org/project/complexNN/)
