@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from complexNN.functional import complexRelu, complexGelu, complexTanh, complexSigmoid, complexMaxPool2d, \
+from complexNN.functional import complexRelu, complexGelu, complexTanh, complexSigmoid, complexMaxPool1d, complexMaxPool2d, \
     complexAvgPool2d, complexAvgPool1d, complexDropout, complexDropout2d, complexElu, complexLeakyRelu, complexSoftmax
 import torch.nn as nn
 
@@ -208,7 +208,7 @@ class cMaxPool1d(nn.Module):
         self.return_indices = return_indices
 
     def forward(self, inp):
-        return complexMaxPool2d(
+        return complexMaxPool1d(
             inp,
             kernel_size=self.kernel_size,
             stride=self.stride,
