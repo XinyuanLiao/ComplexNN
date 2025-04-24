@@ -47,6 +47,8 @@ pip install --upgrade complexNN
 
 ```v0.4.2``` Optimized code structure.
 
+```v0.4.3``` Fixed error in cMaxPool1d module.
+
 # Modules
 
 ## complexNN.nn
