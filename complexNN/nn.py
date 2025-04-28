@@ -589,35 +589,3 @@ class cMultiHeadAttention(nn.Module):
         attn_output = self.out_proj(attn_output)
 
         return attn_output
-
-
-class EarlyStopping:
-    def __init__(self, patience=20, cold=3, decay=5, path='./checkpoint.pth'):
-        self.patience = patience
-        self.cold = cold
-        self.counter_p = 0
-        self.counter_c = 0
-        self.decay = decay
-        self.early_stop = False
-        self.best_loss = np.Inf
-        self.path = path
-
-    def __call__(self, loss, model, optimizer):
-        if loss < self.best_loss:
-            self.best_loss = loss
-            self.save_checkpoint(model)
-            self.counter_p = 0
-        elif loss >= self.best_loss:
-            self.counter_p += 1
-            if self.counter_p > self.patience:
-                self.counter_c += 1
-                if self.counter_c > self.cold:
-                    self.early_stop = True
-                optimizer.param_groups[0]['lr'] /= self.decay
-                self.counter_p = 0
-
-    def save_checkpoint(self, model):
-        torch.save(model.state_dict(), self.path)
-
-
-

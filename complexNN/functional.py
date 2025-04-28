@@ -116,12 +116,6 @@ def complexTanh(inp, **factory_kwargs):
 def complexSigmoid(inp, **factory_kwargs):
     return torch.complex(sigmoid(inp.real, **factory_kwargs), sigmoid(inp.imag, **factory_kwargs))
 
-
-# Get the parameters of the model inherited from nn.Module.
-def get_parameters(model):
-    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    return trainable_params
-
 # Efficient implementation equivalent to the following:
 def complex_scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.0,
         is_causal=False, scale=None, enable_gqa=False) -> torch.Tensor:
