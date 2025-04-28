@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://github.com/XinyuanLiao/ComplexNN/blob/main/.github/Images/logo.jpg" width="200px"/>
-</p>
 <div align="center">
 <h1>ComplexNN: Complex Neural Network Modules</h1>
 
@@ -16,42 +13,76 @@
 ![Stars](https://img.shields.io/github/stars/XinyuanLiao/ComplexNN)
 </div>
 
-# What is ComplexNN?
+`ComplexNN` provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to PyTorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
 
-ComplexNN provides the plural form of standard modules under the PyTorch framework **without any extra trainable parameters**. The parameters and calling methods of the modules in this framework are consistent with those of the PyTorch framework, **incurring no additional learning cost**. This repository is completed due to PyTorch's support for complex gradients. Please refer to the [documentation](https://pytorch.org/docs/stable/notes/autograd.html#complex-autograd-doc) for details.
+---
 
-# Why ComplexNN?
+## Why ComplexNN?
 
 Currently, state-of-the-art complex neural network libraries, such as [deep_complex_networks](https://github.com/ChihebTrabelsi/deep_complex_networks) [1], [complexPytorch](https://github.com/wavefrontshaping/complexPyTorch) [2], etc., implement the complex-valued network module by utilizing two sets of parameters to represent the real and imaginary parts of the complex numbers. This implementation method not only increases the number of parameters but is also not conducive to the backpropagation of gradients and significantly increases the difficulty of training. Therefore, I used PyTorch's support for complex gradient operations to re-implement the complex-valued network module.
 
-# Install
+---
+
+## Installation
 To install _complexNN_ for the first time:
-```
+```bash
 pip install complexNN
 ```
 To upgrade a previous installation of _complexNN_ to the most recent version:
-```
+```bash
 pip install --upgrade complexNN
 ```
+---
 
-# Modules
+## Module Overview
 
-## complexNN.nn
-* _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
-* _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
-* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM, cMultiHeadAttention_
-* _EarlyStopping_
+### Activation Functions
 
-## complexNN.functional
-* _Corresponding function implementation in complexNN.nn_
+| Class         | Description                                 | Example Usage       |
+|---------------|---------------------------------------------|---------------------|
+| `cRule`       | Rule-based activation                       | `cRule()`           |
+| `cElu`        | Exponential Linear Unit                     | `cElu()`            |
+| `cLeakyRelu`  | Leaky Rectified Linear Unit                 | `cLeakyRelu()`      |
+| `cSoftmax`    | Softmax over specified dimension            | `cSoftmax()`        |
+| `cGelu`       | Gaussian Error Linear Unit                  | `cGelu()`           |
+| `cTanh`       | Hyperbolic tangent                          | `cTanh()`           |
+| `cSigmoid`    | Sigmoid function                            | `cSigmoid()`        |
 
- 
-Other modules will be considered for updates in the future.
+### Normalization & Regularization
 
-# Examples 
-<a target="_blank" href="https://drive.google.com/file/d/1O8SzfJANAmcIjjN6b2E5pIkkjutgx5ov/view?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+| Class            | Type           | Description                                    |
+|------------------|----------------|------------------------------------------------|
+| `cBatchNorm1d`   | Normalization  | Batch normalization over 1D inputs             |
+| `cBatchNorm2d`   | Normalization  | Batch normalization over 2D inputs             |
+| `cBatchNorm3d`   | Normalization  | Batch normalization over 3D inputs             |
+| `cLayerNorm`     | Normalization  | Layer normalization                            |
+| `cDropout`       | Regularization | Dropout for 1D inputs                          |
+| `cDropout2d`     | Regularization | Dropout for 2D inputs                          |
+| `cMaxPool1d`     | Pooling        | 1D max pooling                                 |
+| `cMaxPool2d`     | Pooling        | 2D max pooling                                 |
+| `cAvgPool1d`     | Pooling        | 1D average pooling                             |
+| `cAvgPool2d`     | Pooling        | 2D average pooling                             |
 
-## Multi-head attention
+### Layers
+
+| Class                | Description                                          |
+|----------------------|------------------------------------------------------|
+| `cLinear`            | Fully connected linear layer                        |
+| `cMLP`               | Multi-layer perceptron wrapper                       |
+| `cConv1d`            | 1D convolution layer                                 |
+| `cConv2d`            | 2D convolution layer                                 |
+| `cRNNCell`           | Single-step vanilla RNN cell                         |
+| `cGRUCell`           | Single-step GRU cell                                 |
+| `cLSTMCell`          | Single-step LSTM cell                                |
+| `cRNN`               | Multi-step vanilla RNN                               |
+| `cGRU`               | Multi-step GRU                                      |
+| `cLSTM`              | Multi-step LSTM                                     |
+| `cMultiHeadAttention`| Scaled dot-product multi-head attention mechanism    |
+
+---
+## Quick Start
+
+### Multi-head attention
 ```python
 import torch
 from complexNN.nn import cMultiHeadAttention
@@ -64,7 +95,7 @@ if __name__ == '__main__':
     mha_out = mha(input_tensor, input_tensor, input_tensor)
     print(mha_out.shape, mha_out.dtype)
 ```
-## Convolutional neural network
+### Convolutional neural network
 ```python
 import torch
 from complexNN.nn import cConv1d, cConv2d
@@ -81,7 +112,7 @@ if __name__ == '__main__':
     conv2d = cConv2d(in_channels, out_channels, padding=1)
     print(conv2d(conv2d_tensor).shape)
 ```
-## Multilayer perceptron
+### Multilayer perceptron
 ```python
 import torch
 from complexNN.nn import cMLP
@@ -95,7 +126,7 @@ if __name__ == '__main__':
     print(out.shape)
 ```
 
-## Recurrent neural networks
+### Recurrent neural networks
 ```python
 import torch
 from complexNN.nn import cRNN, cGRU, cLSTM
@@ -116,18 +147,15 @@ if __name__ == '__main__':
 
     print(rnn_out.shape, gru_out.shape, lstm_out.shape)
 ```
+---
 
-# Cite as
-```
-@misc{ComplexNN,
-      title={ComplexNN: Complex Neural Network Modules},
-      author={Xinyuan Liao},
-      Url= {https://github.com/XinyuanLiao/ComplexNN}, 
-      year={2023}
-}
-```
+## Contributing
 
-# Reference
+Contributions are welcome! Please open issues for bugs or feature requests, and submit pull requests for improvements.
+
+---
+
+## Reference
 [1] _Chiheb Trabelsi, et al. "Deep Complex Networks." arXiv preprint arXiv:1705.09792 (2017)._
 
 [2] _Matthès, Maxime W., et al. "Learning and avoiding disorder in multimode fibers." Physical Review X 11.2 (2021): 021060._
