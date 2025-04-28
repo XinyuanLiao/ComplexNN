@@ -2,10 +2,10 @@ from setuptools import find_packages, setup
 
 setup(
     name="complexNN",
-    version="0.4.3",
+    version="0.5.1",
     description="A toolbox for using complex valued standard network modules in PyTorch.",
     author="Xinyuan Liao",
-    author_email="liaoxinyuan@mail.nwpu.edu.cn",
+    author_email="xnyuanliao@gmail.com",
     url="https://github.com/XinyuanLiao/ComplexNN",
     packages=find_packages(),
     install_requires=["torch", "numpy"],
