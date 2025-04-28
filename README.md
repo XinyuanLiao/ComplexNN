@@ -34,27 +34,12 @@ To upgrade a previous installation of _complexNN_ to the most recent version:
 pip install --upgrade complexNN
 ```
 
-# Versions
-```v0.0.1``` Provided the plural form of the base standard PyTorch network module.
-
-```v0.1.2``` Bug fixed, and added new support.
-
-```v0.2.1``` Bug fixed, and added new support.
-
-```v0.3.1``` Optimized code structure, bug fixed, and added new support.
-
-```v0.3.2``` Bug fixed.
-
-```v0.4.2``` Optimized code structure.
-
-```v0.4.3``` Fixed error in cMaxPool1d module.
-
 # Modules
 
 ## complexNN.nn
 * _cRule, cElu, cLeakyRelu, cSoftmax, cGelu, cTanh, cSigmoid_
 * _cBatchNorm1d/ 2d/ 3d, cLayerNorm, cDropout, cDropout2d, cMaxPool1d/ 2d, cAvgPool1d/ 2d_
-* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM_
+* _cLinear, cMLP, cConv1d, cConv2d, cRNNCell, cGRUCell, cLSTMCell, cRNN, cGRU, cLSTM, cMultiHeadAttention_
 * _EarlyStopping_
 
 ## complexNN.functional
@@ -65,6 +50,20 @@ Other modules will be considered for updates in the future.
 
 # Examples 
 <a target="_blank" href="https://drive.google.com/file/d/1O8SzfJANAmcIjjN6b2E5pIkkjutgx5ov/view?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+## Multi-head attention
+```python
+import torch
+from complexNN.nn import cMultiHeadAttention
+
+
+if __name__ == '__main__':
+    batch_size, embed_size, seq_len = 10, 512, 15
+    input_tensor = torch.rand((seq_len, batch_size, embed_size), dtype=torch.cfloat)
+    mha = cMultiHeadAttention(E_q=embed_size, E_k=embed_size, E_v=embed_size, E_total=embed_size, nheads=8)
+    mha_out = mha(input_tensor, input_tensor, input_tensor)
+    print(mha_out.shape, mha_out.dtype)
+```
 ## Convolutional neural network
 ```python
 import torch
